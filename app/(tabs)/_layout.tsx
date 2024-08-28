@@ -11,19 +11,38 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: "#ffc700",
+          paddingTop: 14,
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerShown: false,
+          title: "",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name="home"
+              color={focused ? "#875304" : "rgba(135, 83, 4, 0.5)"}
+            />
+          ),
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="cart"
         options={{
-          title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerShown: false,
+          title: "",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name="shopping-cart"
+              color={focused ? "#875304" : "rgba(135, 83, 4, 0.5)"}
+            />
+          ),
         }}
       />
     </Tabs>

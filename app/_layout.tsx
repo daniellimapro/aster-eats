@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 import { NativeBaseProvider } from "native-base";
 import { LogBox } from "react-native";
+import { AppBar } from "@/components/AppBar";
 
 LogBox.ignoreAllLogs(true);
 
@@ -53,6 +54,7 @@ export default function RootLayout() {
 function RootLayoutNav() {
   return (
     <NativeBaseProvider isSSR>
+      <AppBar />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
