@@ -4,7 +4,6 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 
-// Defina os tipos dos parâmetros de navegação
 type TabParamList = {
   index: undefined;
   two: undefined;
