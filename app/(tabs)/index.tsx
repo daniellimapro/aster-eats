@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { Button } from "native-base";
 
 export default function TabOneScreen() {
   return (
@@ -6,6 +7,7 @@ export default function TabOneScreen() {
       <Text style={styles.title}>Tab One</Text>
       <View style={styles.separator} />
       <Text>EditScreenInfo</Text>
+      <Button onPress={() => console.log("hello world")}>Click Me</Button>
     </View>
   );
 }
