@@ -5,6 +5,10 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import { NativeBaseProvider } from "native-base";
+import { LogBox } from "react-native";
+
+LogBox.ignoreAllLogs(true);
+
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -31,7 +35,11 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded) {
-      SplashScreen.hideAsync();
+      const prepare = async () => {
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+        await SplashScreen.hideAsync();
+      };
+      prepare();
     }
   }, [loaded]);
 
