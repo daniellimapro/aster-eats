@@ -62,6 +62,7 @@ export const Product = ({ item }) => {
             size="lg"
             bg="#ffc700"
             _text={{ color: "#875304", fontWeight: "bold" }}
+            _pressed={{ background: "#f0f0f0" }}
             onPress={() => console.log("hello world")}
             isLoading={false}
             isLoadingText="Adicionando"
