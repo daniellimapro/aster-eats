@@ -1,28 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text } from "react-native";
+import { ScrollView } from "native-base";
 
 export default function TabTwoScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} />
-      <Text>EditScreenInfo</Text>
-    </View>
+    <ScrollView w="100%" padding={5} bg="white">
+      <Text>Carrinho</Text>
+    </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});

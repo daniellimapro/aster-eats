@@ -24,7 +24,7 @@ export default function TabLayout() {
         options={{
           headerShown: false,
           title: "",
-          tabBarIcon: ({ color, focused }) => (
+          tabBarIcon: ({ focused }) => (
             <TabBarIcon
               name="home"
               color={focused ? "#875304" : "rgba(135, 83, 4, 0.5)"}
@@ -37,7 +37,7 @@ export default function TabLayout() {
         options={{
           headerShown: false,
           title: "",
-          tabBarIcon: ({ color, focused }) => (
+          tabBarIcon: ({ focused }) => (
             <TabBarIcon
               name="shopping-cart"
               color={focused ? "#875304" : "rgba(135, 83, 4, 0.5)"}
