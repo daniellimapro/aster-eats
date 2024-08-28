@@ -1,19 +1,21 @@
 import React from "react";
-import {
-  VStack,
-  HStack,
-  Button,
-  IconButton,
-  Icon,
-  Text,
-  NativeBaseProvider,
-  Center,
-  Box,
-  StatusBar,
-} from "native-base";
+import { HStack, IconButton, Icon, Text, Box, StatusBar } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+
+// Defina os tipos dos parâmetros de navegação
+type TabParamList = {
+  index: undefined;
+  two: undefined;
+  cart: undefined;
+};
+
+type AppNavigationProp = BottomTabNavigationProp<TabParamList, "index">;
 
 export function AppBar() {
+  const navigation = useNavigation<AppNavigationProp>();
+
   return (
     <>
       <StatusBar barStyle="light-content" />
@@ -44,6 +46,7 @@ export function AppBar() {
         </HStack>
         <HStack>
           <IconButton
+            onPress={() => navigation.navigate("cart")}
             icon={
               <Icon
                 as={MaterialIcons}
