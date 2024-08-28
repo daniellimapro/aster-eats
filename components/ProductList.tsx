@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Product } from "./Product";
 import { FlatList } from "native-base";
 
@@ -14,10 +15,35 @@ const DATA = [
 // https://dummyjson.com/recipes
 
 export const ProductList = () => {
+  const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchRecipes = async () => {
+    try {
+      const response = await fetch("https://dummyjson.com/recipes");
+      const data = await response.json();
+      console.log(data);
+      return data.recipes;
+    } catch (error) {
+      console.error("Erro ao buscar receitas:", error);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    const loadData = async () => {
+      const fetchedRecipes = await fetchRecipes();
+      setRecipes(fetchedRecipes);
+      setLoading(false);
+    };
+
+    loadData();
+  }, []);
+
   return (
     <FlatList
-      data={DATA}
-      renderItem={({ item }) => <Product />}
+      data={recipes}
+      renderItem={({ item }) => <Product item={item} />}
       keyExtractor={(item) => item.id}
     />
   );

@@ -14,7 +14,13 @@ import {
 } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 
-export const Product = () => {
+export const Product = ({ item }) => {
+  const getRandomValue = () => {
+    const min = 50;
+    const max = 90;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
   return (
     <Box alignItems="center">
       <Box
@@ -28,10 +34,10 @@ export const Product = () => {
         borderWidth="1"
       >
         <Box>
-          <AspectRatio w="100%" ratio={16 / 9}>
+          <AspectRatio w="100%" ratio={21 / 7}>
             <Image
               source={{
-                uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
+                uri: item.image,
               }}
               alt="image"
             />
@@ -40,21 +46,16 @@ export const Product = () => {
         <Stack p="4" space={3}>
           <Stack space={2}>
             <Heading size="md" ml="-1">
-              The Garden City
+              {item.name}
             </Heading>
             <Text
-              fontSize="xs"
-              _light={{
-                color: "violet.500",
-              }}
-              _dark={{
-                color: "violet.400",
-              }}
-              fontWeight="500"
+              fontSize="sm"
+              fontWeight="800"
               ml="-0.5"
               mt="-1"
+              color="#875304"
             >
-              The Silicon Valley of India.
+              R$ {getRandomValue()},00
             </Text>
           </Stack>
           <Button
