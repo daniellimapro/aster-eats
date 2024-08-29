@@ -4,7 +4,7 @@ import { useCart } from "@/context/CartContext";
 
 export const CartList = () => {
   const {
-    recipes,
+    dishes,
     removeItemFromCart,
     addAmountToProduct,
     decreaseAmountOfProduct,
@@ -13,7 +13,7 @@ export const CartList = () => {
   return (
     <>
       <FlatList
-        data={recipes}
+        data={dishes}
         renderItem={({ item }) => (
           <CartItem
             addAmountToProduct={addAmountToProduct}

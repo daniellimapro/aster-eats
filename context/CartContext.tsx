@@ -19,7 +19,7 @@ interface CartItem {
 
 // Definindo a interface para o contexto do carrinho
 interface CartContextType {
-  recipes: CartItem[];
+  dishes: CartItem[];
   addItemToCart: (item: CartItem) => void;
   removeItemFromCart: (itemToRemove: CartItem) => void;
   addProductToCart: (product: CartItem) => Promise<void>;
@@ -118,22 +118,22 @@ export const useCart = (): CartContextType => {
 export const CartProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [recipes, setRecipes] = useState<CartItem[]>([]);
+  const [dishes, setDishes] = useState<CartItem[]>([]);
   const toast = useToast(); // Hook do Toast para mostrar mensagens
 
   const addItemToCart = (item: CartItem) => {
-    setRecipes((prevItems) => [...prevItems, item]);
+    setDishes((prevItems) => [...prevItems, item]);
   };
 
   const removeItemFromCart = (itemToRemove: CartItem) => {
-    setRecipes((prevItems) =>
+    setDishes((prevItems) =>
       prevItems.filter((item) => item.id !== itemToRemove.id)
     );
   };
 
   const addAmountToProduct = (productId: number) => {
     console.log();
-    setRecipes((prevItems) => {
+    setDishes((prevItems) => {
       const updatedItems = prevItems.map((item) => {
         if (item.id == productId) {
           return {
@@ -148,7 +148,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   const decreaseAmountOfProduct = (productId: number) => {
-    setRecipes((prevItems) => {
+    setDishes((prevItems) => {
       const updatedItems = prevItems
         .map((item) => {
           if (item.id === productId) {
@@ -173,7 +173,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
     // Adiciona o campo `amount` com valor padrão `1`
     const productWithAmount = { ...product, amount: product.amount ?? 1 };
 
-    const itemExists = recipes.some((item) => item.id === productWithAmount.id);
+    const itemExists = dishes.some((item) => item.id === productWithAmount.id);
 
     if (itemExists) {
       toast.show({
@@ -196,12 +196,12 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
       });
     } else {
       try {
-        // Cria uma nova cópia do array recipes com o novo produto
-        const updatedRecipes = [...recipes, productWithAmount];
-        const updatedJsonValue = JSON.stringify(updatedRecipes);
+        // Cria uma nova cópia do array dishes com o novo produto
+        const updatedDishes = [...dishes, productWithAmount];
+        const updatedJsonValue = JSON.stringify(updatedDishes);
 
         // Atualiza o estado com a nova lista de produtos
-        setRecipes(updatedRecipes);
+        setDishes(updatedDishes);
 
         toast.show({
           placement: "top",
@@ -248,7 +248,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <CartContext.Provider
       value={{
-        recipes,
+        dishes,
         addItemToCart,
         removeItemFromCart,
         addProductToCart,

@@ -11,7 +11,6 @@ import {
   Icon,
 } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const CartItem = ({
   item,
@@ -33,7 +32,6 @@ export const CartItem = ({
         borderWidth="1"
       >
         <HStack space={3} p="4" alignItems="center">
-          {/* Imagem ao lado */}
           <AspectRatio w="20%" ratio={1}>
             <Image
               source={{
@@ -44,7 +42,6 @@ export const CartItem = ({
             />
           </AspectRatio>
 
-          {/* Conteúdo à direita da imagem */}
           <Stack flex="1" space={1} justifyContent="center">
             <Heading size="sm">{item.name}</Heading>
             <Text fontSize="xs" fontWeight="800" color="#875304">
@@ -52,7 +49,6 @@ export const CartItem = ({
             </Text>
           </Stack>
 
-          {/* Botões de ação */}
           <Stack space={2} justifyContent="center">
             <HStack space={2} alignItems="center">
               <IconButton
