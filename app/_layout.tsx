@@ -7,6 +7,7 @@ import "react-native-reanimated";
 import { NativeBaseProvider } from "native-base";
 import { LogBox } from "react-native";
 import { AppBar } from "@/components/AppBar";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 LogBox.ignoreAllLogs(true);
 
@@ -22,6 +23,14 @@ export const unstable_settings = {
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 300000, // 5 minuts,
+    },
+  },
+});
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -53,11 +62,13 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   return (
-    <NativeBaseProvider isSSR>
-      <AppBar />
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-    </NativeBaseProvider>
+    <QueryClientProvider client={queryClient}>
+      <NativeBaseProvider isSSR>
+        <AppBar />
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </NativeBaseProvider>
+    </QueryClientProvider>
   );
 }
