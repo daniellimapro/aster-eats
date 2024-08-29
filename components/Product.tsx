@@ -5,23 +5,23 @@ import {
   AspectRatio,
   Image,
   Text,
-  Center,
-  HStack,
   Stack,
   Button,
-  IconButton,
-  Icon,
-  useToast,
-  Alert,
-  VStack,
-  CloseIcon,
 } from "native-base";
-import { MaterialIcons } from "@expo/vector-icons";
-
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCart } from "@/context/CartContext";
 
-export const Product = ({ item }) => {
+interface ProductItem {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+}
+
+interface ProductProps {
+  item: ProductItem;
+}
+
+export const Product = ({ item }: ProductProps) => {
   const { addProductToCart } = useCart();
 
   return (
@@ -38,12 +38,7 @@ export const Product = ({ item }) => {
       >
         <Box>
           <AspectRatio w="100%" ratio={21 / 7}>
-            <Image
-              source={{
-                uri: item.image,
-              }}
-              alt="image"
-            />
+            <Image source={{ uri: item.image }} alt="Product Image" />
           </AspectRatio>
         </Box>
         <Stack p="4" space={3}>

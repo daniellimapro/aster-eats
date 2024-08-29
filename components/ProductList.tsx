@@ -1,8 +1,14 @@
-import { useEffect, useState } from "react";
-import { Product } from "./Product";
-import { FlatList, Text } from "native-base";
+import React from "react";
+import { FlatList } from "native-base";
 import { useDishes } from "@/queries/useDishes";
+import { Product } from "./Product";
 import { ProductSkeleton } from "./ProductSkeleton";
+
+interface Dish {
+  id: string;
+  name: string;
+  price: number;
+}
 
 export const ProductList = () => {
   const { data, isLoading, isPending } = useDishes();
@@ -11,7 +17,7 @@ export const ProductList = () => {
     return (
       <FlatList
         data={[1, 2, 3]}
-        renderItem={({ item }) => <ProductSkeleton />}
+        renderItem={() => <ProductSkeleton />}
         keyExtractor={(item) => item.toString()}
       />
     );
@@ -21,9 +27,9 @@ export const ProductList = () => {
     <>
       {data?.dishes && (
         <FlatList
-          data={data?.dishes}
-          renderItem={({ item }) => <Product item={item} />}
-          keyExtractor={(item) => item.id}
+          data={data.dishes}
+          renderItem={({ item }) => <Product item={item as Dish} />}
+          keyExtractor={(item) => (item as Dish).id.toString()}
         />
       )}
     </>

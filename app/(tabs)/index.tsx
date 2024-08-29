@@ -1,7 +1,7 @@
 import { View, Heading } from "native-base";
 import { ProductList } from "@/components/ProductList";
 
-export default function TabOneScreen() {
+export default function Home() {
   return (
     <View w="100%" padding={5} bg="white">
       <Heading color="#875304" mb={5}>

@@ -12,12 +12,27 @@ import {
 } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 
+interface CartItemType {
+  id: number;
+  name: string;
+  price: number;
+  amount: number;
+  image: string;
+}
+
+interface CartItemProps {
+  item: CartItemType;
+  removeItemFromArray: (item: CartItemType) => void;
+  addAmountToProduct: (id: number) => void;
+  decreaseAmountOfProduct: (id: number) => void;
+}
+
 export const CartItem = ({
   item,
   removeItemFromArray,
   addAmountToProduct,
   decreaseAmountOfProduct,
-}) => {
+}: CartItemProps) => {
   return (
     <Box alignItems="center">
       <Box
@@ -34,10 +49,8 @@ export const CartItem = ({
         <HStack space={3} p="4" alignItems="center">
           <AspectRatio w="20%" ratio={1}>
             <Image
-              source={{
-                uri: item.image,
-              }}
-              alt="image"
+              source={{ uri: item.image }}
+              alt="Product Image"
               borderRadius="md"
             />
           </AspectRatio>

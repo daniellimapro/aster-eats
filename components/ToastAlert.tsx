@@ -5,15 +5,14 @@ import {
   IconButton,
   useToast,
   VStack,
+  Text,
 } from "native-base";
-import { Text } from "native-base";
-import React from "react";
 
-interface Notification {
+interface NotificationProps {
   id: number | string;
-  status?: string;
-  variant: string;
-  title: React.ReactElement;
+  status?: "info" | "warning" | "success" | "error";
+  variant: "solid" | "subtle" | "outline";
+  title: string;
   description?: string;
   isClosable?: boolean;
   [key: string]: any;
@@ -21,13 +20,13 @@ interface Notification {
 
 export const ToastAlert = ({
   id,
-  status,
+  status = "success",
   variant,
   title,
   description,
-  isClosable,
+  isClosable = false,
   ...rest
-}: Notification) => {
+}: NotificationProps) => {
   const toast = useToast();
 
   return (
@@ -35,7 +34,7 @@ export const ToastAlert = ({
       maxWidth="95%"
       alignSelf="center"
       flexDirection="row"
-      status={status ? status : "success"}
+      status={status}
       variant={variant}
       {...rest}
       bg="#875304"
@@ -58,13 +57,13 @@ export const ToastAlert = ({
                   ? "lightText"
                   : variant !== "outline"
                   ? "darkText"
-                  : null
+                  : undefined
               }
             >
               {title}
             </Text>
           </HStack>
-          {isClosable ? (
+          {isClosable && (
             <IconButton
               variant="unstyled"
               icon={<CloseIcon size="3" />}
@@ -73,7 +72,7 @@ export const ToastAlert = ({
               }}
               onPress={() => toast.close(id)}
             />
-          ) : null}
+          )}
         </HStack>
         {description && (
           <Text
@@ -83,7 +82,7 @@ export const ToastAlert = ({
                 ? "lightText"
                 : variant !== "outline"
                 ? "darkText"
-                : null
+                : undefined
             }
           >
             {description}

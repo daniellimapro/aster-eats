@@ -1,15 +1,5 @@
 import React from "react";
-import {
-  Box,
-  AspectRatio,
-  Image,
-  Stack,
-  Skeleton,
-  Center,
-  HStack,
-  Text,
-  Button,
-} from "native-base";
+import { Box, AspectRatio, Stack, Skeleton, Button } from "native-base";
 
 export const ProductSkeleton = () => {
   return (

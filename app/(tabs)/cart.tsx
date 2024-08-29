@@ -2,7 +2,7 @@ import { View, Heading, Text } from "native-base";
 import { CartList } from "@/components/CartList";
 import { useCart } from "@/context/CartContext";
 
-export default function TabTwoScreen() {
+export default function Cart() {
   const { dishes, dishesAmount } = useCart();
   return (
     <View w="100%" padding={5} bg="white">

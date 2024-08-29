@@ -22,7 +22,7 @@ type TabParamList = {
 type AppNavigationProp = BottomTabNavigationProp<TabParamList, "index">;
 
 export function AppBar() {
-  const { dishes, dishesAmount } = useCart();
+  const { dishes } = useCart();
   const navigation = useNavigation<AppNavigationProp>();
 
   return (
@@ -66,13 +66,11 @@ export function AppBar() {
             }
           />
           {dishes.length > 0 && (
-            <>
-              <Badge bg="rgb(225, 29, 72)" borderRadius={5} mr={2} h={7}>
-                <Text color="#ffc700" fontWeight="bold">
-                  {dishes.length}
-                </Text>
-              </Badge>
-            </>
+            <Badge bg="rgb(225, 29, 72)" borderRadius={5} mr={2} h={7}>
+              <Text color="#ffc700" fontWeight="bold">
+                {dishes.length}
+              </Text>
+            </Badge>
           )}
         </HStack>
       </HStack>
