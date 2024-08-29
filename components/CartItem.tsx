@@ -11,8 +11,9 @@ import {
   Icon,
 } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const CartItem = ({ item }) => {
+export const CartItem = ({ item, removeItemFromArray }) => {
   const getRandomValue = () => {
     const min = 50;
     const max = 90;
@@ -84,6 +85,7 @@ export const CartItem = ({ item }) => {
               />
             </HStack>
             <IconButton
+              onPress={() => removeItemFromArray(item)}
               icon={
                 <Icon
                   as={MaterialIcons}

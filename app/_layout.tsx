@@ -8,6 +8,7 @@ import { NativeBaseProvider } from "native-base";
 import { LogBox } from "react-native";
 import { AppBar } from "@/components/AppBar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { CartProvider } from "@/context/CartContext";
 
 LogBox.ignoreAllLogs(true);
 
@@ -64,10 +65,12 @@ function RootLayoutNav() {
   return (
     <QueryClientProvider client={queryClient}>
       <NativeBaseProvider isSSR>
-        <AppBar />
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
+        <CartProvider>
+          <AppBar />
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </CartProvider>
       </NativeBaseProvider>
     </QueryClientProvider>
   );
