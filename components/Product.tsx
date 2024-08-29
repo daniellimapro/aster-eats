@@ -11,10 +11,91 @@ import {
   Button,
   IconButton,
   Icon,
+  useToast,
+  Alert,
+  VStack,
+  CloseIcon,
 } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 
+const ToastAlert = ({
+  id,
+  status,
+  variant,
+  title,
+  description,
+  isClosable,
+  ...rest
+}) => {
+  const toast = useToast();
+
+  return (
+    <Alert
+      maxWidth="95%"
+      alignSelf="center"
+      flexDirection="row"
+      status={status ? status : "success"}
+      variant={variant}
+      {...rest}
+      bg="#875304"
+      marginTop={90}
+    >
+      <VStack space={1} flexShrink={1} w="100%">
+        <HStack
+          flexShrink={1}
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <HStack space={2} flexShrink={1} alignItems="center">
+            <Alert.Icon />
+            <Text
+              fontSize="md"
+              fontWeight="medium"
+              flexShrink={1}
+              color={
+                variant === "solid"
+                  ? "lightText"
+                  : variant !== "outline"
+                  ? "darkText"
+                  : null
+              }
+            >
+              {title}
+            </Text>
+          </HStack>
+          {isClosable ? (
+            <IconButton
+              variant="unstyled"
+              icon={<CloseIcon size="3" />}
+              _icon={{
+                color: variant === "solid" ? "lightText" : "darkText",
+              }}
+              onPress={() => toast.close(id)}
+            />
+          ) : null}
+        </HStack>
+        {description && (
+          <Text
+            px="6"
+            color={
+              variant === "solid"
+                ? "lightText"
+                : variant !== "outline"
+                ? "darkText"
+                : null
+            }
+          >
+            {description}
+          </Text>
+        )}
+      </VStack>
+    </Alert>
+  );
+};
+
 export const Product = ({ item }) => {
+  const toast = useToast();
+
   const getRandomValue = () => {
     const min = 50;
     const max = 90;
@@ -63,7 +144,29 @@ export const Product = ({ item }) => {
             bg="#ffc700"
             _text={{ color: "#875304", fontWeight: "bold" }}
             _pressed={{ background: "#f0f0f0" }}
-            onPress={() => console.log("hello world")}
+            onPress={() =>
+              toast.show({
+                placement: "top",
+                render: () => {
+                  return (
+                    <ToastAlert
+                      id={"xyz"}
+                      style={{ background: "#000000" }}
+                      title={
+                        <>
+                          <Text fontWeight="900" display="block">
+                            {item.name}
+                          </Text>{" "}
+                          foi adicionado ao carrinho
+                        </>
+                      }
+                      variant="solid"
+                      isClosable={true}
+                    />
+                  );
+                },
+              })
+            }
             isLoading={false}
             isLoadingText="Adicionando"
           >
