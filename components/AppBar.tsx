@@ -1,8 +1,17 @@
 import React from "react";
-import { HStack, IconButton, Icon, Text, Box, StatusBar } from "native-base";
+import {
+  HStack,
+  IconButton,
+  Icon,
+  Text,
+  Box,
+  StatusBar,
+  Badge,
+} from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { useCart } from "@/context/CartContext";
 
 type TabParamList = {
   index: undefined;
@@ -13,6 +22,7 @@ type TabParamList = {
 type AppNavigationProp = BottomTabNavigationProp<TabParamList, "index">;
 
 export function AppBar() {
+  const { dishes } = useCart();
   const navigation = useNavigation<AppNavigationProp>();
 
   return (
@@ -55,6 +65,17 @@ export function AppBar() {
               />
             }
           />
+          {dishes.length > 0 && (
+            <Badge
+              bg="rgb(225, 29, 72)"
+              h={7}
+              w={7}
+              borderRadius={50}
+              _text={{ color: "#ffc700", fontSize: 14, fontWeight: "bold" }}
+            >
+              {dishes.length}
+            </Badge>
+          )}
         </HStack>
       </HStack>
     </>
