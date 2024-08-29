@@ -13,7 +13,7 @@ interface CartItemType {
 
 export const CartList = () => {
   const {
-    dishes,
+    products,
     removeItemFromCart,
     addAmountToProduct,
     decreaseAmountOfProduct,
@@ -21,7 +21,7 @@ export const CartList = () => {
 
   return (
     <FlatList
-      data={dishes}
+      data={products}
       renderItem={({ item }: { item: CartItemType }) => (
         <CartItem
           addAmountToProduct={addAmountToProduct}

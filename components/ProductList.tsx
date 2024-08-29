@@ -1,17 +1,12 @@
 import React from "react";
 import { FlatList } from "native-base";
-import { useDishes } from "@/queries/useDishes";
+import { useCartItems } from "@/queries/useCartItems";
 import { Product } from "./Product";
 import { ProductSkeleton } from "./ProductSkeleton";
-
-interface Dish {
-  id: string;
-  name: string;
-  price: number;
-}
+import { ProductProps } from "@/interfaces/Product";
 
 export const ProductList = () => {
-  const { data, isLoading, isPending } = useDishes();
+  const { data, isLoading, isPending } = useCartItems();
 
   if (isLoading || isPending) {
     return (
@@ -25,11 +20,11 @@ export const ProductList = () => {
 
   return (
     <>
-      {data?.dishes && (
+      {data?.products && (
         <FlatList
-          data={data.dishes}
-          renderItem={({ item }) => <Product item={item as Dish} />}
-          keyExtractor={(item) => (item as Dish).id.toString()}
+          data={data.products}
+          renderItem={({ item }) => <Product item={item as ProductProps} />}
+          keyExtractor={(item) => (item as ProductProps).id.toString()}
         />
       )}
     </>

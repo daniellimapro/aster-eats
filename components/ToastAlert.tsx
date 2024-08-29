@@ -1,3 +1,4 @@
+import { NotificationProps } from "@/interfaces/Notification";
 import {
   Alert,
   CloseIcon,
@@ -7,16 +8,6 @@ import {
   VStack,
   Text,
 } from "native-base";
-
-interface NotificationProps {
-  id: number | string;
-  status?: "info" | "warning" | "success" | "error";
-  variant: "solid" | "subtle" | "outline";
-  title: string;
-  description?: string;
-  isClosable?: boolean;
-  [key: string]: any;
-}
 
 export const ToastAlert = ({
   id,

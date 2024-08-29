@@ -9,19 +9,13 @@ import {
   Button,
 } from "native-base";
 import { useCart } from "@/context/CartContext";
+import { ProductProps } from "@/interfaces/Product";
 
 interface ProductItem {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
+  item: ProductProps;
 }
 
-interface ProductProps {
-  item: ProductItem;
-}
-
-export const Product = ({ item }: ProductProps) => {
+export const Product = ({ item }: ProductItem) => {
   const { addProductToCart } = useCart();
 
   return (
