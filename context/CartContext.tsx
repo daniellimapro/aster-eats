@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import { useToast } from "native-base";
 import { Text } from "native-base";
 import { ToastAlert } from "@/components/ToastAlert";
@@ -8,7 +14,7 @@ interface CartItem {
   name: string;
   price: number;
   image: string;
-  amount?: number;
+  amount: number;
 }
 
 interface CartContextType {
@@ -18,6 +24,7 @@ interface CartContextType {
   addProductToCart: (product: CartItem) => Promise<void>;
   addAmountToProduct: (itemToRemove: number) => void;
   decreaseAmountOfProduct: (itemToRemove: number) => void;
+  dishesAmount: number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -33,6 +40,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [dishes, setDishes] = useState<CartItem[]>([]);
+  const [dishesAmount, setDishesAmount] = useState(0);
   const toast = useToast(); // Hook do Toast para mostrar mensagens
 
   const addItemToCart = (item: CartItem) => {
@@ -112,8 +120,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
           placement: "top",
           render: () => (
             <ToastAlert
-              id={"xyz"}
-              style={{ background: "#000000" }}
+              id={product.id}
               title={
                 <>
                   <Text fontWeight="900" display="block">
@@ -123,7 +130,6 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
                 </>
               }
               variant="solid"
-              isClosable={true}
             />
           ),
         });
@@ -142,13 +148,24 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
                 </>
               }
               variant="solid"
-              isClosable={true}
             />
           ),
         });
       }
     }
   };
+
+  const calculateTotalAmount = () => {
+    const dishesAmount = dishes.reduce(
+      (total, dish) => total + dish.price * dish.amount,
+      0
+    );
+    setDishesAmount(dishesAmount);
+  };
+
+  useEffect(() => {
+    dishes.length > 0 && calculateTotalAmount();
+  }, [dishes]);
 
   return (
     <CartContext.Provider
@@ -159,6 +176,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
         addProductToCart,
         addAmountToProduct,
         decreaseAmountOfProduct,
+        dishesAmount,
       }}
     >
       {children}
