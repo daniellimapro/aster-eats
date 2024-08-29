@@ -22,7 +22,6 @@ export const CartList = () => {
     try {
       const response = await fetch("https://dummyjson.com/recipes");
       const data = await response.json();
-      console.log(data);
       return data.recipes;
     } catch (error) {
       console.error("Erro ao buscar receitas:", error);
