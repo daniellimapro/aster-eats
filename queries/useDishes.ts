@@ -3,7 +3,8 @@ import axios from "axios";
 
 // Instância do Axios com a URL base
 export const axiosInstance = axios.create({
-  baseURL: "https://dummyjson.com/recipes",
+  baseURL:
+    "https://api.mockfly.dev/mocks/b3cd93ab-666e-4e2b-b317-27cf1f91da3d/dishes",
 });
 
 // Função que simula um atraso de 5 segundos antes de resolver a promessa

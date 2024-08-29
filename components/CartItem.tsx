@@ -13,13 +13,12 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const CartItem = ({ item, removeItemFromArray }) => {
-  const getRandomValue = () => {
-    const min = 50;
-    const max = 90;
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
-
+export const CartItem = ({
+  item,
+  removeItemFromArray,
+  addAmountToProduct,
+  decreaseAmountOfProduct,
+}) => {
   return (
     <Box alignItems="center">
       <Box
@@ -49,7 +48,7 @@ export const CartItem = ({ item, removeItemFromArray }) => {
           <Stack flex="1" space={1} justifyContent="center">
             <Heading size="sm">{item.name}</Heading>
             <Text fontSize="xs" fontWeight="800" color="#875304">
-              R$ {getRandomValue()},00
+              R$ {item.price * item.amount}
             </Text>
           </Stack>
 
@@ -57,6 +56,7 @@ export const CartItem = ({ item, removeItemFromArray }) => {
           <Stack space={2} justifyContent="center">
             <HStack space={2} alignItems="center">
               <IconButton
+                onPress={() => decreaseAmountOfProduct(item.id)}
                 icon={
                   <Icon
                     as={MaterialIcons}
@@ -69,9 +69,10 @@ export const CartItem = ({ item, removeItemFromArray }) => {
                 bg="#ffc700"
               />
               <Text fontSize="md" fontWeight="800" color="#875304">
-                1
+                {item.amount}
               </Text>
               <IconButton
+                onPress={() => addAmountToProduct(item.id)}
                 icon={
                   <Icon
                     as={MaterialIcons}

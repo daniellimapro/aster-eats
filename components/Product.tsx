@@ -24,12 +24,6 @@ import { useCart } from "@/context/CartContext";
 export const Product = ({ item }) => {
   const { addProductToCart } = useCart();
 
-  const getRandomValue = () => {
-    const min = 50;
-    const max = 90;
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
-
   return (
     <Box alignItems="center">
       <Box
@@ -64,7 +58,7 @@ export const Product = ({ item }) => {
               mt="-1"
               color="#875304"
             >
-              R$ {getRandomValue()},00
+              R$ {item.price}
             </Text>
           </Stack>
           <Button

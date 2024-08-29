@@ -23,6 +23,8 @@ interface CartContextType {
   addItemToCart: (item: CartItem) => void;
   removeItemFromCart: (itemToRemove: CartItem) => void;
   addProductToCart: (product: CartItem) => Promise<void>;
+  addAmountToProduct: (itemToRemove: CartItem) => void;
+  decreaseAmountOfProduct: (itemToRemove: CartItem) => void;
 }
 
 const ToastAlert = ({
@@ -129,9 +131,50 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
     );
   };
 
+  const addAmountToProduct = (productId: number) => {
+    console.log();
+    setRecipes((prevItems) => {
+      const updatedItems = prevItems.map((item) => {
+        if (item.id == productId) {
+          return {
+            ...item,
+            amount: (item.amount ?? 1) + 1, // Adiciona a quantidade especificada
+          };
+        }
+        return item;
+      });
+      return updatedItems;
+    });
+  };
+
+  const decreaseAmountOfProduct = (productId: number) => {
+    setRecipes((prevItems) => {
+      const updatedItems = prevItems
+        .map((item) => {
+          if (item.id === productId) {
+            const newAmount = (item.amount ?? 1) - 1; // Diminui a quantidade especificada
+            if (newAmount <= 0) {
+              // Remove o item se a quantidade for zero ou menor
+              return null;
+            }
+            return {
+              ...item,
+              amount: newAmount,
+            };
+          }
+          return item;
+        })
+        .filter((item) => item !== null); // Remove os itens nulos da lista
+      return updatedItems;
+    });
+  };
+
   const addProductToCart = async (product: CartItem) => {
-    const itemExists = recipes.some((item) => item.id == product.id);
-    console.log(itemExists);
+    // Adiciona o campo `amount` com valor padrão `1`
+    const productWithAmount = { ...product, amount: product.amount ?? 1 };
+
+    const itemExists = recipes.some((item) => item.id === productWithAmount.id);
+
     if (itemExists) {
       toast.show({
         placement: "top",
@@ -153,9 +196,13 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
       });
     } else {
       try {
-        recipes.push(product);
-        const updatedJsonValue = JSON.stringify(recipes);
-        setRecipes(recipes); // Atualiza o estado com o novo array
+        // Cria uma nova cópia do array recipes com o novo produto
+        const updatedRecipes = [...recipes, productWithAmount];
+        const updatedJsonValue = JSON.stringify(updatedRecipes);
+
+        // Atualiza o estado com a nova lista de produtos
+        setRecipes(updatedRecipes);
+
         toast.show({
           placement: "top",
           render: () => (
@@ -165,7 +212,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
               title={
                 <>
                   <Text fontWeight="900" display="block">
-                    {product.name}
+                    {productWithAmount.name}
                   </Text>{" "}
                   foi adicionado ao carrinho
                 </>
@@ -200,7 +247,14 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
 
   return (
     <CartContext.Provider
-      value={{ recipes, addItemToCart, removeItemFromCart, addProductToCart }}
+      value={{
+        recipes,
+        addItemToCart,
+        removeItemFromCart,
+        addProductToCart,
+        addAmountToProduct,
+        decreaseAmountOfProduct,
+      }}
     >
       {children}
     </CartContext.Provider>

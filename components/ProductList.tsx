@@ -19,9 +19,9 @@ export const ProductList = () => {
 
   return (
     <>
-      {data?.recipes && (
+      {data?.dishes && (
         <FlatList
-          data={data?.recipes}
+          data={data?.dishes}
           renderItem={({ item }) => <Product item={item} />}
           keyExtractor={(item) => item.id}
         />
