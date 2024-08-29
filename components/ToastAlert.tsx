@@ -7,6 +7,17 @@ import {
   VStack,
 } from "native-base";
 import { Text } from "native-base";
+import React from "react";
+
+interface Notification {
+  id: number | string;
+  status?: string;
+  variant: string;
+  title: React.ReactElement;
+  description?: string;
+  isClosable?: boolean;
+  [key: string]: any;
+}
 
 export const ToastAlert = ({
   id,
@@ -16,7 +27,7 @@ export const ToastAlert = ({
   description,
   isClosable,
   ...rest
-}) => {
+}: Notification) => {
   const toast = useToast();
 
   return (

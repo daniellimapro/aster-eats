@@ -3,35 +3,32 @@ import { useToast } from "native-base";
 import { Text } from "native-base";
 import { ToastAlert } from "@/components/ToastAlert";
 
-// Definindo a interface para o item do carrinho
 interface CartItem {
-  id: string;
-  title: string;
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  amount?: number;
 }
 
-// Definindo a interface para o contexto do carrinho
 interface CartContextType {
   dishes: CartItem[];
   addItemToCart: (item: CartItem) => void;
   removeItemFromCart: (itemToRemove: CartItem) => void;
   addProductToCart: (product: CartItem) => Promise<void>;
-  addAmountToProduct: (itemToRemove: CartItem) => void;
-  decreaseAmountOfProduct: (itemToRemove: CartItem) => void;
+  addAmountToProduct: (itemToRemove: number) => void;
+  decreaseAmountOfProduct: (itemToRemove: number) => void;
 }
 
-// Criando o contexto
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-// Hook customizado para usar o contexto
 export const useCart = (): CartContextType => {
   const context = useContext(CartContext);
-  if (!context) {
-    throw new Error("useCart deve ser usado dentro de um CartProvider");
-  }
+  if (!context)
+    throw new Error("useCart deve ser usado dentro do CartProvider");
   return context;
 };
 
-// Provedor do contexto
 export const CartProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
@@ -49,13 +46,12 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   const addAmountToProduct = (productId: number) => {
-    console.log();
     setDishes((prevItems) => {
       const updatedItems = prevItems.map((item) => {
         if (item.id == productId) {
           return {
             ...item,
-            amount: (item.amount ?? 1) + 1, // Adiciona a quantidade especificada
+            amount: (item.amount ?? 1) + 1,
           };
         }
         return item;
@@ -69,9 +65,8 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
       const updatedItems = prevItems
         .map((item) => {
           if (item.id === productId) {
-            const newAmount = (item.amount ?? 1) - 1; // Diminui a quantidade especificada
+            const newAmount = (item.amount ?? 1) - 1;
             if (newAmount <= 0) {
-              // Remove o item se a quantidade for zero ou menor
               return null;
             }
             return {
@@ -81,15 +76,13 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
           }
           return item;
         })
-        .filter((item) => item !== null); // Remove os itens nulos da lista
+        .filter((item) => item !== null);
       return updatedItems;
     });
   };
 
   const addProductToCart = async (product: CartItem) => {
-    // Adiciona o campo `amount` com valor padrão `1`
     const productWithAmount = { ...product, amount: product.amount ?? 1 };
-
     const itemExists = dishes.some((item) => item.id === productWithAmount.id);
 
     if (itemExists) {
@@ -97,7 +90,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
         placement: "top",
         render: () => (
           <ToastAlert
-            id={"xyz"}
+            id={product.id}
             style={{ background: "#C11719" }}
             title={
               <>
@@ -107,17 +100,12 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
               </>
             }
             variant="solid"
-            isClosable={true}
           />
         ),
       });
     } else {
       try {
-        // Cria uma nova cópia do array dishes com o novo produto
         const updatedDishes = [...dishes, productWithAmount];
-        const updatedJsonValue = JSON.stringify(updatedDishes);
-
-        // Atualiza o estado com a nova lista de produtos
         setDishes(updatedDishes);
 
         toast.show({
