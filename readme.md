@@ -9,7 +9,7 @@ Para começar a desenvolver com o Aster Eats, siga estes passos:
 #### Clone o Repositório
 
 ```bash
-git clone https://github.com/seu-usuario/aster-eats.git
+git clone https://github.com/daniellimapro/aster-eats.git
 cd aster-eats
 ```
 
