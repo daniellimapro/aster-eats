@@ -24,7 +24,6 @@ describe("CartList", () => {
   const mockDecreaseAmountOfProduct = jest.fn();
 
   beforeEach(() => {
-    // Configuração dos mocks
     (useCart as jest.Mock).mockReturnValue({
       products: [
         {

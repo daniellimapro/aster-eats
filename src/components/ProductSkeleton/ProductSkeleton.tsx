@@ -1,5 +1,3 @@
-// components/ProductSkeleton.tsx
-
 import React from "react";
 import { Box, AspectRatio, Stack, Skeleton, Button, Text } from "native-base";
 import { colors } from "@/styles/colors";

@@ -35,7 +35,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [products, setProducts] = useState<ProductProps[]>([]);
-  const toast = useToast(); // Hook do Toast para mostrar mensagens
+  const toast = useToast();
 
   const addItemToCart = useCallback((item: ProductProps) => {
     setProducts((prevItems) => [...prevItems, item]);
