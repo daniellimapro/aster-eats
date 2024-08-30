@@ -39,7 +39,6 @@ export const ProductSkeleton = () => {
             isLoadingText="Adicionando"
           >
             <Skeleton.Text lines={1} />
-            <Text>Teste</Text>
           </Button>
         </Stack>
       </Box>
