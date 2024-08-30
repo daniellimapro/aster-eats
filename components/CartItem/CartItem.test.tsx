@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
-import { CartItem } from "@/components/CartItem/CartItem"; // ajuste o caminho conforme necessário
+import { CartItem } from "@/components/CartItem/CartItem";
 import { NativeBaseProvider } from "native-base";
 
 describe("CartItem", () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react-native";
-import { ProductList } from "./ProductList"; // Ajuste o caminho conforme necessário
+import { ProductList } from "./ProductList";
 import { useCartItems } from "@/queries/useCartItems";
 import { NativeBaseProvider } from "native-base";
 
@@ -12,7 +12,7 @@ jest.mock("../Product/Product", () => ({
   Product: ({ item }: any) => <div>{item.name}</div>,
 }));
 
-jest.mock("../ProductSkeleton", () => ({
+jest.mock("../ProductSkeleton/ProductSkeleton", () => ({
   ProductSkeleton: () => <div>Skeleton</div>,
 }));
 
