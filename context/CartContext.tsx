@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { useToast } from "native-base";
 import { Text } from "native-base";
-import { ToastAlert } from "@/components/ToastAlert";
+import { ToastAlert } from "@/components/ToastAlert/ToastAlert";
 import { ProductProps } from "@/interfaces/Product";
 
 interface CartContextType {
