@@ -1,4 +1,5 @@
 import { NotificationProps } from "@/interfaces/Notification";
+import { colors } from "@/styles/colors";
 import {
   Alert,
   CloseIcon,
@@ -28,7 +29,7 @@ export const ToastAlert = ({
       status={status}
       variant={variant}
       {...rest}
-      bg="#875304"
+      bg={colors.brown}
       marginTop={90}
     >
       <VStack space={1} flexShrink={1} w="100%">

@@ -12,6 +12,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { useCart } from "@/context/CartContext";
+import { colors } from "@/styles/colors";
 
 type TabParamList = {
   index: undefined;
@@ -28,9 +29,9 @@ export function AppBar() {
   return (
     <>
       <StatusBar barStyle="light-content" />
-      <Box safeAreaTop bg="#ffc700" />
+      <Box safeAreaTop bg={colors.yellow} />
       <HStack
-        bg="#ffc700"
+        bg={colors.yellow}
         px="1"
         py="3"
         justifyContent="space-between"
@@ -45,11 +46,11 @@ export function AppBar() {
                 size="lg"
                 as={MaterialIcons}
                 name="blur-on"
-                color="#875304"
+                color={colors.brown}
               />
             }
           />
-          <Text color="#875304" fontSize="25" fontWeight="900">
+          <Text color={colors.brown} fontSize="25" fontWeight="900">
             ASTER EATS
           </Text>
         </HStack>
@@ -62,13 +63,13 @@ export function AppBar() {
                 as={MaterialIcons}
                 name="shopping-cart"
                 size="lg"
-                color="#875304"
+                color={colors.brown}
               />
             }
           />
           {products.length > 0 && (
-            <Badge bg="rgb(225, 29, 72)" borderRadius={5} mr={2} h={7}>
-              <Text color="#ffc700" fontWeight="bold">
+            <Badge bg={colors.red} borderRadius={5} mr={2} h={7}>
+              <Text color={colors.yellow} fontWeight="bold">
                 {products.length}
               </Text>
             </Badge>

@@ -11,6 +11,7 @@ import {
   Icon,
 } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
+import { colors } from "@/styles/colors";
 
 interface CartItemType {
   id: number;
@@ -58,7 +59,7 @@ export const CartItem = ({
 
           <Stack flex="1" space={1} justifyContent="center">
             <Heading size="sm">{item.name}</Heading>
-            <Text fontSize="xs" fontWeight="800" color="#875304">
+            <Text fontSize="xs" fontWeight="800" color={colors.brown}>
               R$ {item.price * item.amount}
             </Text>
           </Stack>
@@ -73,13 +74,13 @@ export const CartItem = ({
                     as={MaterialIcons}
                     name="remove"
                     size="sm"
-                    color="#875304"
+                    color={colors.brown}
                   />
                 }
                 borderRadius="full"
-                bg="#ffc700"
+                bg={colors.yellow}
               />
-              <Text fontSize="md" fontWeight="800" color="#875304">
+              <Text fontSize="md" fontWeight="800" color={colors.brown}>
                 {item.amount}
               </Text>
               <IconButton
@@ -90,11 +91,11 @@ export const CartItem = ({
                     as={MaterialIcons}
                     name="add"
                     size="sm"
-                    color="#875304"
+                    color={colors.brown}
                   />
                 }
                 borderRadius="full"
-                bg="#ffc700"
+                bg={colors.yellow}
               />
             </HStack>
             <IconButton

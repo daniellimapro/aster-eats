@@ -10,6 +10,7 @@ import {
 } from "native-base";
 import { useCart } from "@/context/CartContext";
 import { ProductProps } from "@/interfaces/Product";
+import { colors } from "@/styles/colors";
 
 interface ProductItem {
   item: ProductProps;
@@ -49,7 +50,7 @@ export const Product = ({ item }: ProductItem) => {
               fontWeight="800"
               ml="-0.5"
               mt="-1"
-              color="#875304"
+              color={colors.brown}
               testID="product-price"
             >
               R$ {item.price}
@@ -58,8 +59,8 @@ export const Product = ({ item }: ProductItem) => {
           <Button
             size="lg"
             bg="#ffc700"
-            _text={{ color: "#875304", fontWeight: "bold" }}
-            _pressed={{ background: "#f0f0f0" }}
+            _text={{ color: colors.brown, fontWeight: "bold" }}
+            _pressed={{ background: colors.lightGray }}
             onPress={() => addProductToCart(item)}
             isLoading={false}
             isLoadingText="Adicionando"

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Box, AspectRatio, Stack, Skeleton, Button, Text } from "native-base";
+import { colors } from "@/styles/colors";
 
 export const ProductSkeleton = () => {
   return (
@@ -32,9 +33,9 @@ export const ProductSkeleton = () => {
           </Stack>
           <Button
             size="lg"
-            bg="#ffc700"
-            _text={{ color: "#875304", fontWeight: "bold" }}
-            _pressed={{ background: "#f0f0f0" }}
+            bg={colors.yellow}
+            _text={{ color: colors.brown, fontWeight: "bold" }}
+            _pressed={{ background: colors.lightGray }}
             isLoading={false}
             isLoadingText="Adicionando"
           >

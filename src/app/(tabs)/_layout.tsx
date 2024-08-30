@@ -1,6 +1,7 @@
 import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
+import { colors } from "@/styles/colors";
 
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -14,7 +15,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarStyle: {
-          backgroundColor: "#ffc700",
+          backgroundColor: colors.yellow,
           paddingTop: 14,
         },
       }}
@@ -27,7 +28,7 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               name="home"
-              color={focused ? "#875304" : "rgba(135, 83, 4, 0.5)"}
+              color={focused ? colors.brown : colors.brownTransparent}
             />
           ),
         }}
@@ -40,7 +41,7 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               name="shopping-cart"
-              color={focused ? "#875304" : "rgba(135, 83, 4, 0.5)"}
+              color={focused ? colors.brown : colors.brownTransparent}
             />
           ),
         }}
