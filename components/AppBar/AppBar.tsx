@@ -56,6 +56,7 @@ export function AppBar() {
         <HStack>
           <IconButton
             onPress={() => navigation.navigate("cart")}
+            testID="cart-button"
             icon={
               <Icon
                 as={MaterialIcons}

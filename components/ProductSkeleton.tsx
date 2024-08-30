@@ -1,9 +1,11 @@
+// components/ProductSkeleton.tsx
+
 import React from "react";
-import { Box, AspectRatio, Stack, Skeleton, Button } from "native-base";
+import { Box, AspectRatio, Stack, Skeleton, Button, Text } from "native-base";
 
 export const ProductSkeleton = () => {
   return (
-    <Box alignItems="center">
+    <Box alignItems="center" testID="product-skeleton-container">
       <Box
         maxW="100%"
         flex="1"
@@ -37,6 +39,7 @@ export const ProductSkeleton = () => {
             isLoadingText="Adicionando"
           >
             <Skeleton.Text lines={1} />
+            <Text>Teste</Text>
           </Button>
         </Stack>
       </Box>

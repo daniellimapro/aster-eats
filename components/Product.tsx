@@ -32,12 +32,16 @@ export const Product = ({ item }: ProductItem) => {
       >
         <Box>
           <AspectRatio w="100%" ratio={21 / 7}>
-            <Image source={{ uri: item.image }} alt="Product Image" />
+            <Image
+              source={{ uri: item.image }}
+              alt="Product Image"
+              testID="product-image"
+            />
           </AspectRatio>
         </Box>
         <Stack p="4" space={3}>
           <Stack space={2}>
-            <Heading size="md" ml="-1">
+            <Heading size="md" ml="-1" testID="product-name">
               {item.name}
             </Heading>
             <Text
@@ -46,6 +50,7 @@ export const Product = ({ item }: ProductItem) => {
               ml="-0.5"
               mt="-1"
               color="#875304"
+              testID="product-price"
             >
               R$ {item.price}
             </Text>
@@ -58,6 +63,7 @@ export const Product = ({ item }: ProductItem) => {
             onPress={() => addProductToCart(item)}
             isLoading={false}
             isLoadingText="Adicionando"
+            testID="add-to-cart-button"
           >
             Adicionar ao Carrinho
           </Button>

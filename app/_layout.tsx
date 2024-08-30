@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 import { NativeBaseProvider } from "native-base";
 import { LogBox } from "react-native";
-import { AppBar } from "@/components/AppBar";
+import { AppBar } from "@/components/AppBar/AppBar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CartProvider } from "@/context/CartContext";
 
@@ -55,10 +55,15 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
+const inset = {
+  frame: { x: 0, y: 0, width: 0, height: 0 },
+  insets: { top: 0, left: 0, right: 0, bottom: 0 },
+};
+
 function RootLayoutNav() {
   return (
     <QueryClientProvider client={queryClient}>
-      <NativeBaseProvider isSSR>
+      <NativeBaseProvider initialWindowMetrics={inset}>
         <CartProvider>
           <AppBar />
           <Stack>
