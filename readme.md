@@ -56,14 +56,13 @@ npm test
 #### Principais Dependências
 
 - @expo/vector-icons - Icones para o React Native.
-- @react-native-async-storage/async-storage - Armazenamento assíncrono para React Native.
 - @react-navigation/native - Navegação em React Native.
 - axios - Cliente HTTP baseado em Promises.
+- tanstack query - Biblioteca para gerenciar estado, cache e requisições de dados assíncronos.
+- context api - Ferramenta do React para gerenciar e compartilhar estado globalmente entre componentes
 - native-base - Biblioteca de UI para React Native.
-- Dependências de Desenvolvimento
 - jest - Framework de testes.
 - @testing-library/react-native - Testes de componentes React Native.
-  🧪 Testes
 
 ### Para rodar os testes, use o comando:
 
