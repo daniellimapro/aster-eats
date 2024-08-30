@@ -9,7 +9,7 @@ export default function Cart() {
       <Heading color="#875304" mb={5}>
         Minhas Compras{" "}
         <Text color="rgba(0,0,0,.3)" fontSize={16}>
-          {products.length} {products.length === 1 ? "item" : "itens"}
+          R$ {totalAmount}
         </Text>
       </Heading>
       {products.length > 0 ? (
@@ -33,14 +33,6 @@ export default function Cart() {
             Seu carrinho de compras está vazio.
           </Text>
         </View>
-      )}
-      {totalAmount > 0 && (
-        <Heading color="#875304" mb={5}>
-          Valor Total{" "}
-          <Text color="rgba(0,0,0,.3)" fontSize={16}>
-            R$ {totalAmount}
-          </Text>
-        </Heading>
       )}
     </View>
   );
