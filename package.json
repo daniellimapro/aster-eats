@@ -17,8 +17,8 @@
     "coverageDirectory": "./coverage",
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "components/**/*.{js,jsx,ts,tsx}",
-      "!components/**/*.d.ts"
+      "coverage/components/**/*.{js,jsx,ts,tsx}",
+      "!coverage/components/**/*.d.ts"
     ]
   },
   "dependencies": {
