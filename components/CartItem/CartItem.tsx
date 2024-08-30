@@ -52,6 +52,7 @@ export const CartItem = ({
               source={{ uri: item.image }}
               alt="Product Image"
               borderRadius="md"
+              testID="product-image"
             />
           </AspectRatio>
 
@@ -66,6 +67,7 @@ export const CartItem = ({
             <HStack space={2} alignItems="center">
               <IconButton
                 onPress={() => decreaseAmountOfProduct(item.id)}
+                testID="remove-button"
                 icon={
                   <Icon
                     as={MaterialIcons}
@@ -82,6 +84,7 @@ export const CartItem = ({
               </Text>
               <IconButton
                 onPress={() => addAmountToProduct(item.id)}
+                testID="add-button"
                 icon={
                   <Icon
                     as={MaterialIcons}
@@ -96,6 +99,7 @@ export const CartItem = ({
             </HStack>
             <IconButton
               onPress={() => removeItemFromArray(item)}
+              testID="delete-button"
               icon={
                 <Icon
                   as={MaterialIcons}

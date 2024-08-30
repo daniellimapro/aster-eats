@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList } from "native-base";
 import { useCart } from "@/context/CartContext";
-import { CartItem } from "./CartItem";
+import { CartItem } from "./CartItem/CartItem";
 
 interface CartItemType {
   id: number;
