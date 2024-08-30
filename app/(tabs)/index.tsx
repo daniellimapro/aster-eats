@@ -1,5 +1,5 @@
 import { View, Heading } from "native-base";
-import { ProductList } from "@/components/ProductList";
+import { ProductList } from "@/components/ProductList/ProductList";
 
 export default function Home() {
   return (
