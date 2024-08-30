@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList } from "native-base";
 import { useCartItems } from "@/queries/useCartItems";
-import { Product } from "./Product";
+import { Product } from "./Product/Product";
 import { ProductSkeleton } from "./ProductSkeleton";
 import { ProductProps } from "@/interfaces/Product";
 
