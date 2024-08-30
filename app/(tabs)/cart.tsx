@@ -1,5 +1,5 @@
 import { View, Heading, Text } from "native-base";
-import { CartList } from "@/components/CartList";
+import { CartList } from "@/components/CartList/CartList";
 import { useCart } from "@/context/CartContext";
 
 export default function Cart() {
