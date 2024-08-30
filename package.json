@@ -14,11 +14,11 @@
     "transformIgnorePatterns": [
       "/node_modules/(?!native-base)/"
     ],
-    "coverageDirectory": "./coverage",
+    "coverageDirectory": "./app/coverage",
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "coverage/components/**/*.{js,jsx,ts,tsx}",
-      "!coverage/components/**/*.d.ts"
+      "app/components/**/*.{js,jsx,ts,tsx}",
+      "!app/components/**/*.d.ts"
     ]
   },
   "dependencies": {
