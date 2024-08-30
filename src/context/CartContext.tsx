@@ -3,8 +3,8 @@ import React, {
   useContext,
   useState,
   ReactNode,
-  useEffect,
   useCallback,
+  useMemo,
 } from "react";
 import { useToast } from "native-base";
 import { Text } from "native-base";
@@ -35,7 +35,6 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [products, setProducts] = useState<ProductProps[]>([]);
-  const [totalAmount, setTotalAmount] = useState(0);
   const toast = useToast(); // Hook do Toast para mostrar mensagens
 
   const addItemToCart = useCallback((item: ProductProps) => {
@@ -131,17 +130,12 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
     [products, toast]
   );
 
-  const calculateTotalAmount = useCallback(() => {
-    const total = products.reduce(
+  const totalAmount = useMemo(() => {
+    return products.reduce(
       (total, product) => total + product.price * (product.amount ?? 1),
       0
     );
-    setTotalAmount(total);
   }, [products]);
-
-  useEffect(() => {
-    calculateTotalAmount();
-  }, [products, calculateTotalAmount]);
 
   return (
     <CartContext.Provider
