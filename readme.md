@@ -1,5 +1,7 @@
 # Aster Eats
 
+![Aster Eats](https://github.com/daniellimapro/aster-eats/blob/main/assets/images/mock1.jpg?raw=true)
+
 ## Aster Eats é um app de delivery de comida inspirado no universo dos personagens Asterix e Obelix. Como já temos o famoso Uber Eats, criamos o Aster Eats como um divertido easter egg, trazendo um toque de magia e humor para sua experiência gastronômica!
 
 ### 🚀 Início Rápido
