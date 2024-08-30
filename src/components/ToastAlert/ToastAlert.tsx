@@ -30,7 +30,7 @@ export const ToastAlert = ({
       variant={variant}
       {...rest}
       bg={colors.brown}
-      marginTop={90}
+      top={90}
     >
       <VStack space={1} flexShrink={1} w="100%">
         <HStack
