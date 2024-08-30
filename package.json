@@ -13,6 +13,12 @@
     "preset": "jest-expo",
     "transformIgnorePatterns": [
       "/node_modules/(?!native-base)/"
+    ],
+    "coverageDirectory": "./coverage",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "components/**/*.{js,jsx,ts,tsx}",
+      "!components/**/*.d.ts"
     ]
   },
   "dependencies": {
