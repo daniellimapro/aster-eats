@@ -2,14 +2,7 @@ import React from "react";
 import { FlatList } from "native-base";
 import { useCart } from "@/context/CartContext";
 import { CartItem } from "../CartItem/CartItem";
-
-interface CartItemType {
-  id: number;
-  name: string;
-  price: number;
-  amount: number;
-  image: string;
-}
+import { ProductProps } from "@/interfaces/Product";
 
 export const CartList = () => {
   const {
@@ -22,7 +15,7 @@ export const CartList = () => {
   return (
     <FlatList
       data={products}
-      renderItem={({ item }: { item: CartItemType }) => (
+      renderItem={({ item }: { item: ProductProps }) => (
         <CartItem
           addAmountToProduct={addAmountToProduct}
           removeItemFromArray={removeItemFromCart}
