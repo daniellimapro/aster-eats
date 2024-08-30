@@ -1,15 +1,13 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react-native";
-import { Product } from "./Product"; // Ajuste o caminho conforme necessário
+import { render } from "@testing-library/react-native";
+import { Product } from "./Product";
 import { useCart } from "@/context/CartContext";
 import { NativeBaseProvider } from "native-base";
 
-// Mock do useCart
 jest.mock("@/context/CartContext", () => ({
   useCart: jest.fn(),
 }));
 
-// Dados mockados para o produto
 const mockItem = {
   id: 1,
   name: "Produto Teste",
@@ -23,7 +21,6 @@ const inset = {
 };
 
 const setup = () => {
-  // Mock da função addProductToCart
   const mockAddProductToCart = jest.fn();
 
   (useCart as jest.Mock).mockReturnValue({

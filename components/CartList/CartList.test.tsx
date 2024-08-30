@@ -1,16 +1,14 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react-native";
+import { render } from "@testing-library/react-native";
 import { CartList } from "./CartList";
 import { useCart } from "@/context/CartContext";
 import { CartItem } from "../CartItem/CartItem";
 import { NativeBaseProvider } from "native-base";
 
-// Mock do useCart
 jest.mock("@/context/CartContext", () => ({
   useCart: jest.fn(),
 }));
 
-// Mock do CartItem
 jest.mock("../CartItem/CartItem", () => ({
   CartItem: jest.fn(() => <></>),
 }));
